@@ -1,11 +1,10 @@
+import helperspygame
 import pygame
-from pygame import *
-from player import *
+import tmxreader
 from blocks import *
 from monsters import *
-
-import tmxreader
-import helperspygame
+from player import *
+from pygame import *
 
 # Объявляем переменные
 WIN_WIDTH = 800  # Ширина создаваемого окна
@@ -143,7 +142,8 @@ def main():
             timer.tick(60)
             for e in pygame.event.get():  # Обрабатываем события
                 if e.type == QUIT:
-                    raise SystemExit, "QUIT"
+                    raise SystemExit
+                    "QUIT"
                 if e.type == KEYDOWN and e.key == K_UP:
                     up = True
                 if e.type == KEYDOWN and e.key == K_LEFT:
@@ -171,7 +171,7 @@ def main():
             monsters.update(platforms)  # передвигаем всех монстров
             camera.update(hero)  # центризируем камеру относительно персонаж
             center_offset = camera.reverse(CENTER_OF_SCREEN)  # получаем координаты внутри длинного уровня
-            renderer.set_camera_position_and_size(center_offset[0], center_offset[1], \
+            renderer.set_camera_position_and_size(center_offset[0], center_offset[1],
                                                   WIN_WIDTH, WIN_HEIGHT, "center")
             hero.update(left, right, up, running, platforms)  # передвижение
             pygame.display.update()  # обновление и вывод всех изменений на экран
